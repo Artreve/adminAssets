@@ -75,17 +75,17 @@ function EmployeesList({ employees = [], onDelete }) {
   );
 }
 //recibe la lista de empleados y es el que tiene la logica de como se renderiza
-export function Employees({ employees, onDelete }) {
+export function Employees({ employees, onDelete }) { 
   return (
     <>
-      {employees.length === 0 ? (
+      {employees?.data.rows ? (
         <ErrorMessage
           tittle={"Error"}
           message={"No se encuentran RRHH diponibles"}
         />
       ) : (
         
-        <EmployeesList employees={employees} onDelete={onDelete} />
+        <EmployeesList employees={employees.data.rows} onDelete={onDelete} />
       )}
     </>
   );

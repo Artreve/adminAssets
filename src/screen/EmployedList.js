@@ -1,24 +1,21 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchEmployeesAsync } from "../features/empleados/empleadosSlice";
+import { fetchEmployeesAsync } from "../service/apiEmployee";
 import { Employees } from "../home";
 // import { advertencia } from "../plugins/alertas";
 function EmployedList() {
   const dispatch = useDispatch();
   const empleados = useSelector((state) => state.employed.employees);
-  console.log(empleados)
-  const empleadosArray = empleados.data.rows;
-  console.log(empleadosArray);
-  const paginas = empleados.data.num_pages
-  console.log(paginas)
   const handleDelete = (id) => {
     // advertencia(() => dispatch(deleteEmployed(id)));
   };
 
   useEffect(()=>{
-    dispatch(fetchEmployeesAsync());
+    fetchEmployeesAsync(dispatch);
   },[fetchEmployeesAsync])
+
+
   return (
     <div className="container">
       <div className="row">
@@ -33,7 +30,7 @@ function EmployedList() {
         </div>
       </div>
       <div className="row mt-3">
-        <Employees employees={empleadosArray} onDelete={handleDelete} />
+        <Employees employees={empleados} onDelete={handleDelete} />
       </div>
     </div>
   );

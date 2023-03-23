@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import ErrorMessage from "../components/common/ErrorMenssage";
-import InputForm from "../components/common/InputForm";
-import EmployedCard from "../components/employeeDetail/EmployeeCard";
+import ErrorMessage from "../../components/common/ErrorMenssage";
+import InputForm from "../../components/common/InputForm";
+import EmployedCard from "../../components/employeeDetail/EmployeeCard";
 import { Link } from "react-router-dom";
 // import { updateEmployed } from "../features/empleados/empleadosSlice";
-import { advertencia } from "../plugins/alertas";
+import { advertencia } from "../../utils/alertas";
 function EmployedDetail() {
   //Funciones
   const empleadoSearch = () => {

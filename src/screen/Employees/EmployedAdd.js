@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { useDispatch} from "react-redux";
-import InputForm from "../components/common/InputForm";
-import { successAlert } from "../plugins/alertas";
+import InputForm from "../../components/common/InputForm";
+import { successAlert } from "../../utils/alertas";
 function EmployedAdd() {
   //Funciones
   const handleChange = (e) => {

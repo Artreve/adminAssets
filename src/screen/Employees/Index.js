@@ -1,21 +1,21 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchEmployeesAsync } from "../../api/apiEmployee";
+import { getEmployees,deleteEmployee } from "../../api/apiEmployee";
 import { Employees } from "./EmployedList";
 import {Loading} from "../../components/common/Loading"
-// import { advertencia } from "../plugins/alertas";
+import { advertencia } from "../../utils/alertas";
 function Index() {
   const dispatch = useDispatch();
   const empleados = useSelector((state) => state.employed.employees);
   const loading = useSelector((state)=>state.employed.loading)
   const handleDelete = (id) => {
-    // advertencia(() => dispatch(deleteEmployed(id)));
+    advertencia(() => dispatch(deleteEmployee(id)));
   };
 
   useEffect(()=>{
-    fetchEmployeesAsync(dispatch);
-  },[fetchEmployeesAsync])
+    dispatch(getEmployees());
+  },[dispatch])
 
 
   return (

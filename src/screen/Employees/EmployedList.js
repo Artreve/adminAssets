@@ -28,7 +28,7 @@ function EmployeesList({ employees, onDelete }) {
               <td>{employee.rol}</td>
               <td>
                 <Link
-                  to={`detail_employed/${employee.employee_id}`}
+                  to={`detail_employed/${employee.idemployee}`}
                   type="button"
                   className="btn btn-info"
                 >
@@ -48,7 +48,7 @@ function EmployeesList({ employees, onDelete }) {
                   </svg>
                 </Link>
                 <button
-                  onClick={() => onDelete(employee.employee_id)}
+                  onClick={() => onDelete(employee.idemployee)}
                   type="button"
                   className="btn btn-danger mx-3"
                 >

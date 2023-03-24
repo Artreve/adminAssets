@@ -38,8 +38,10 @@ export const empladosSlice = createSlice({
       })
       .addCase(deleteEmployee.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(state.employees.rows)
-        // state.employees.rows = state.employees.rows.filter(employee => employee.idemployee !== action.payload);
+        console.log(action.payload.id)
+        state.employees.data.rows = state.employees.data.rows.filter(employee => {
+          console.log(employee.idemployee)
+          return (employee.idemployee - 1) !== action.payload.id});
       })
       .addCase(deleteEmployee.rejected, (state, action) => {
         state.loading = false;

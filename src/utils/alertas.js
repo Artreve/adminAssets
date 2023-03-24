@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-export const advertencia = ( hook = null) =>{
+export const advertencia = ( cb = null) =>{
     Swal.fire({
         title: '¿Seguro que deseas realizar la accion?',
         text: "Estos cambios no podran ser revertidos",
@@ -12,18 +12,18 @@ export const advertencia = ( hook = null) =>{
       }).then((result) => {
         if (result.isConfirmed) {
           successAlert()
-          if (hook) hook()
+          if (cb) cb()
         }
       })
 }
 
-export const successAlert = (hook = null) => {
+export const successAlert = (cb = null) => {
     Swal.fire({
       icon: 'success',
       title: "La acción fue exitosa!",
       showConfirmButton: false,
       timer: 1500
     }).finally(() => {
-      if (hook) hook()
+      if (cb) cb()
     })
   }

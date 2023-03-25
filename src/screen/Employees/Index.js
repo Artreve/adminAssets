@@ -1,25 +1,22 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getEmployees,deleteEmployee } from "../../api/apiEmployee";
+import { getEmployees, deleteEmployee } from "../../api/apiEmployee";
 import { Employees } from "./EmployedList";
-import {Loading} from "../../components/common/Loading"
+import { Loading } from "../../components/common/Loading";
 import { advertencia } from "../../utils/alertas";
 function Index() {
   const dispatch = useDispatch();
   const empleados = useSelector((state) => state.employed.employees);
-  const loading = useSelector((state)=>state.employed.loading)
+  const loading = useSelector((state) => state.employed.loading);
   const handleDelete = (id) => {
-    advertencia(() =>{
-    dispatch(deleteEmployee(id))
-    dispatch(getEmployees())
-  });
+    advertencia(()=>dispatch(deleteEmployee(id)));
+    // dispatch(getEmployees())
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getEmployees());
-  },[dispatch])
-
+  }, []);
 
   return (
     <div className="container">
@@ -35,7 +32,11 @@ function Index() {
         </div>
       </div>
       <div className="row justify-content-center mt-3">
-        {loading ? (<Loading/>):(<Employees employees={empleados} onDelete={handleDelete} />)}  
+        {loading ? (
+          <Loading />
+        ) : (
+          <Employees employees={empleados} onDelete={handleDelete} />
+        )}
       </div>
     </div>
   );

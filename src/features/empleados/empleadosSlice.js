@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getEmployees,deleteEmployee } from "../../api/apiEmployee";
+import { getEmployees, deleteEmployee } from "../../api/apiEmployee";
 const initialState = {
   employees: [],
   loading: false,
@@ -9,19 +9,10 @@ export const empladosSlice = createSlice({
   name: "employed",
   initialState: initialState,
   reducers: {
-    // setEmployees: (state, action) =>{
-    //     state.employees = action.payload
-    // },
-    // setLoading: (state, action) =>{
-    //     state.loading = action.payload
-    // },
-    // setMessage: (state, action) =>{
-    //     state.message = action.payload
-    // }
   },
   extraReducers: (builder) => {
     builder
-    //-----------GET------------
+      //-----------GET------------
       .addCase(getEmployees.pending, (state) => {
         state.loading = true;
       })
@@ -32,16 +23,17 @@ export const empladosSlice = createSlice({
       .addCase(getEmployees.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-    //-----------DELETE------------
-      }).addCase(deleteEmployee.pending, (state) => {
+        //-----------DELETE------------
+      })
+      .addCase(deleteEmployee.pending, (state) => {
         state.loading = true;
       })
       .addCase(deleteEmployee.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload.id)
-        state.employees.data.rows = state.employees.data.rows.filter(employee => {
-          console.log(employee.idemployee)
-          return (employee.idemployee - 1) !== action.payload.id});
+        state.employees.rows = state.employees.rows.filter((employee) => {
+          console.log(employee.idemployee);
+          return employee.idemployee !== action.payload;
+        });
       })
       .addCase(deleteEmployee.rejected, (state, action) => {
         state.loading = false;

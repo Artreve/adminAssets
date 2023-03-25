@@ -9,7 +9,7 @@ export const getEmployees = createAsyncThunk(
   async () => {
     const response = await fetch(`${url}?page=5`);
     const responseData = await response.json();
-    return responseData;
+    return responseData.data;
   }
 );
 
@@ -22,7 +22,7 @@ export const deleteEmployee = createAsyncThunk(
         "Content-Type": "application/json",
       },
     });
-    const responseData = response.json();
-    return responseData;
+    // const responseData = response.json();
+    return id;
   }
 );

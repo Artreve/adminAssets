@@ -5,11 +5,10 @@ function InputForm({ employee, handleChange }) {
   const {
     first_name,
     last_name,
-    email,
-    phone_number,
-    hire_date,
-    salary,
-    comission_pct
+    cuit,
+    team_id,
+    join_date,
+    rol
   } = employee
   return (
     <>
@@ -39,62 +38,48 @@ function InputForm({ employee, handleChange }) {
         minLength = {4}
         maxLength={15}
       />
-      <label className="my-3">Correo</label>
+      <label className="my-3">CUIT</label>
       <input
         onChange={handleChange}
-        name="email"
-        type="email"
+        name="cuit"
+        type="text"
         className="form-control"
         id="exampleFormControlInput1"
-        placeholder="ejemplo@ejemplo.com"
-        value={email}
+        value={cuit}
         required
         minLength = {4}
         maxLength={15}
       />
-      <label className="my-3">Numero de telefono</label>
+      <label className="my-3">ID de equipo</label>
       <input
         onChange={handleChange}
-        name="phone_number"
+        name="team_id"
         type="text"
         className="form-control"
         id="exampleFormControlInput1"
-        placeholder="Sin 0 y 15"
-        value={phone_number}
+        value={team_id}
         required
         maxLength={10}
       />
       <label className="my-3">Fecha de ingreso</label>
       <input
         onChange={handleChange}
-        name="hire_date"
+        name="join_date"
         type="date"
         className="form-control"
         id="exampleFormControlInput1"
         placeholder="Nombre"
-        value={hire_date}
+        value={join_date}
         required
       />
-      <label className="my-3">Salario</label>
+      <label className="my-3">Rol</label>
       <input
         onChange={handleChange}
-        name="salary"
-        type="number"
+        name="rol"
+        type="text"
         className="form-control"
         id="exampleFormControlInput1"
-        placeholder="$"
-        value={salary}
-        required
-      />
-      <label className="my-3">Comision</label>
-      <input
-        onChange={handleChange}
-        name="comission_pct"
-        type="number"
-        className="form-control"
-        id="exampleFormControlInput1"
-        placeholder="$"
-        value={comission_pct}
+        value={rol}
         required
       />
     </>

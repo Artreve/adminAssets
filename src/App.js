@@ -1,5 +1,5 @@
 import Index from "./screen/Employees/Index";
-import EmployedAdd from "./screen/Employees/EmployedDetail";
+import EmployedAdd from "./screen/Employees/EmployedAdd";
 import EmployedDetail from "./screen/Employees/EmployedDetail";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
@@ -15,7 +15,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="create_employed" element={<EmployedAdd />} />
+            <Route path="/create_employed" element={<EmployedAdd />} />
             <Route path="detail_employed/:id" element={<EmployedDetail />} />
           </Routes>
         </StrictMode>

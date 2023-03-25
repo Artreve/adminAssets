@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-// import {addEmployed} from "../features/empleados/empleadosSlice";
-import { useNavigate} from "react-router-dom";
-import { v4 as uuid } from "uuid";
-import { useDispatch} from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import InputForm from "../../components/common/InputForm";
 import { successAlert } from "../../utils/alertas";
+import { createEmployee } from "../../api/apiEmployee";
 function EmployedAdd() {
   //Funciones
   const handleChange = (e) => {
@@ -12,9 +11,9 @@ function EmployedAdd() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-      // dispatch(addEmployed({ ...empleado, employee_id: uuid() }));
-      successAlert(()=> navigate("/"))
-     
+    dispatch(createEmployee({ ...empleado}));
+    console.log(empleado);
+    successAlert(() => navigate("/"));
   };
 
   //Hooks
@@ -23,11 +22,10 @@ function EmployedAdd() {
   const [empleado, setEmpleado] = useState({
     first_name: "",
     last_name: "",
-    email: "",
-    phone_number: "",
-    hire_date: "",
-    salary: 0,
-    comission_pct: 0,
+    cuit: "",
+    team_id: "",
+    join_date: "",
+    rol: ""
   });
 
   return (
@@ -36,8 +34,11 @@ function EmployedAdd() {
         <div className="col-md-6">
           <form className="form" onSubmit={handleSubmit}>
             {<InputForm employee={empleado} handleChange={handleChange} />}
-            <button type="submit" className="btn btn-success my-3">
-              Crear empleado +
+            <Link to="/" className="btn btn-secondary my-3">
+              Cancelar
+            </Link>
+            <button type="submit" className="btn btn-success my-3 mx-3">
+              Crear empleado
             </button>
           </form>
         </div>

@@ -11,7 +11,6 @@ function Index() {
   const loading = useSelector((state) => state.employed.loading);
   const handleDelete = (id) => {
     advertencia(()=>dispatch(deleteEmployee(id)));
-    // dispatch(getEmployees())
   };
 
   useEffect(() => {

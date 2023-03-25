@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getEmployees, deleteEmployee } from "../../api/apiEmployee";
+import { getEmployees, deleteEmployee,createEmployee } from "../../api/apiEmployee";
 const initialState = {
   employees: [],
   loading: false,
@@ -12,6 +12,7 @@ export const empladosSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      //VER COMO IMPLEMENTAR .addMatcher
       //-----------GET------------
       .addCase(getEmployees.pending, (state) => {
         state.loading = true;
@@ -23,19 +24,28 @@ export const empladosSlice = createSlice({
       .addCase(getEmployees.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-        //-----------DELETE------------
       })
+      //-----------DELETE------------
       .addCase(deleteEmployee.pending, (state) => {
         state.loading = true;
       })
       .addCase(deleteEmployee.fulfilled, (state, action) => {
         state.loading = false;
-        state.employees.rows = state.employees.rows.filter((employee) => {
-          console.log(employee.idemployee);
-          return employee.idemployee !== action.payload;
-        });
+        state.employees.rows = state.employees.rows.filter((employee) => employee.idemployee !== action.payload);
       })
       .addCase(deleteEmployee.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      //----------CREATE--------------
+      .addCase(createEmployee.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(createEmployee.fulfilled, (state, action) => {
+        state.loading = false;
+        state.employees.rows = [...state.employees.rows, action.payload];
+      })
+      .addCase(createEmployee.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
@@ -43,9 +53,3 @@ export const empladosSlice = createSlice({
 });
 export const { setEmployees, setLoading, setMessage } = empladosSlice.actions;
 export default empladosSlice.reducer;
-
-/*En el objeto extraReducers, utilizamos addCase para definir tres casos diferentes:
-
-fetchData.pending: Este caso se ejecuta cuando la acción fetchData se está ejecutando. Aquí, simplemente cambiamos el estado loading a true.
-fetchData.fulfilled: Este caso se ejecuta cuando la acción fetchData se ha completado con éxito. Aquí, cambiamos el estado loading a false y establecemos los datos devueltos por la API en el estado data.
-fetchData.rejected: Este caso se ejecuta cuando la acción fetchData se ha completado con error. Aquí, cambiamos el estado loading a false y establecemos el mensaje de error en el estado error.*/

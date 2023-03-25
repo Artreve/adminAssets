@@ -10,10 +10,10 @@ import { advertencia } from "../../utils/alertas";
 function EmployedDetail() {
   //Funciones
   const empleadoSearch = () => {
-    setEmpleado(empleados.find((empleado) => empleado.employee_id === id));
+    // setEmpleado(empleados.find((empleado) => empleado.employee_id === id));
   };
   const handleChange = (e) => {
-    setEmpleado({ ...empleado, [e.target.name]: e.target.value });
+    // setEmpleado({ ...empleado, [e.target.name]: e.target.value });
   };
   const handleCancelEdition = () => {
     empleadoSearch();

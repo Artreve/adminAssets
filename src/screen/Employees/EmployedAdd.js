@@ -12,6 +12,7 @@ function EmployedAdd() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createEmployee({ ...empleado}));
+    console.log('empleado dentro del evento')
     console.log(empleado);
     successAlert(() => navigate("/"));
   };

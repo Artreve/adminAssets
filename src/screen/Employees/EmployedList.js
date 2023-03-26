@@ -78,7 +78,7 @@ export function Employees({ employees, onDelete }) {
     <>
       {employees.length === 0 ? (
         <ErrorMessage
-          tittle={"Error"}
+          tittle={"Mensage"}
           message={"No se encuentran RRHH diponibles"}
         />
       ) : (

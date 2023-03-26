@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getEmployees, deleteEmployee,createEmployee } from "../../api/apiEmployee";
+import { getEmployees, deleteEmployee} from "../../api/apiEmployee";
 const initialState = {
   employees: [],
   loading: false,
@@ -38,17 +38,20 @@ export const empladosSlice = createSlice({
         state.error = action.error.message;
       })
       //----------CREATE--------------
-      .addCase(createEmployee.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(createEmployee.fulfilled, (state, action) => {
-        state.loading = false;
-        state.employees.rows = [...state.employees.rows, action.payload];
-      })
-      .addCase(createEmployee.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
+      // .addCase(createEmployee.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(createEmployee.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   console.log('estoy dentro del slice')
+      //   console.log(action.payload)
+      //   state.employees.rows = [...state.employees.rows, action.payload];
+      //   console.log(state.employees.rows)
+      // })
+      // .addCase(createEmployee.rejected, (state, action) => {
+      //   state.loading = false;
+      //   state.error = action.error.message;
+      // });
   },
 });
 export const { setEmployees, setLoading, setMessage } = empladosSlice.actions;

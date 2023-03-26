@@ -15,7 +15,7 @@ function Index() {
 
   useEffect(() => {
     dispatch(getEmployees());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container">
@@ -24,7 +24,7 @@ function Index() {
           <Link
             to="create_employed"
             type="button"
-            className="btn btn-success fw-bold mx-2"
+            className={`btn btn-success fw-bold mx-2 ${loading ? "disabled": ""}`}
           >
             Crear nuevo empleado
           </Link>

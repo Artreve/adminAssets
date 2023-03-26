@@ -5,7 +5,7 @@ const url = "http://localhost:5000/api/employee";
 export const getEmployees = createAsyncThunk(
   "employee/getEmpleado",
   async () => {
-    const response = await fetch(`${url}?page=6`);
+    const response = await fetch(`${url}?page=1`);
     const responseData = await response.json();
     return responseData.data;
   }
@@ -43,7 +43,6 @@ export const createEmployee = createAsyncThunk(
       }),
     });
     const responseData = await response.json();
-    console.log('estoy en la consulta')
     return responseData
   }
 );

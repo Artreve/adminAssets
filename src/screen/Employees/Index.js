@@ -12,6 +12,9 @@ function Index() {
   const handleDelete = (id) => {
     advertencia(()=>dispatch(deleteEmployee(id)));
   };
+  const handleGetForPage = (page)=>{
+    dispatch(getEmployees(page))
+  }
 
   useEffect(() => {
     dispatch(getEmployees());
@@ -34,7 +37,7 @@ function Index() {
         {loading ? (
           <Loading />
         ) : (
-          <Employees employees={empleados} onDelete={handleDelete} />
+          <Employees employees={empleados} onDelete={handleDelete} onGetPage={handleGetForPage} />
         )}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import ErrorMessage from "../../components/common/ErrorMenssage";
 import { Link } from "react-router-dom";
+import Pagination from "../../components/common/Pagination";
 function EmployeesList({ employees, onDelete }) {
   return (
     <>
@@ -17,7 +18,7 @@ function EmployeesList({ employees, onDelete }) {
           </tr>
         </thead>
         <tbody>
-          {employees.map((employee) => {
+          {employees.map(employee => {
             return (
               <tr key={employee.idemployee}>
                 <td>{employee.first_name}</td>
@@ -73,7 +74,7 @@ function EmployeesList({ employees, onDelete }) {
   );
 }
 //recibe la lista de empleados y es el que tiene la logica de como se renderiza
-export function Employees({ employees, onDelete }) {
+export function Employees({ employees, onDelete, onGetPage }) {
   return (
     <>
       {employees.length === 0 ? (
@@ -82,7 +83,10 @@ export function Employees({ employees, onDelete }) {
           message={"No se encuentran RRHH diponibles"}
         />
       ) : (
-        <EmployeesList employees={employees.rows} onDelete={onDelete} />
+        <>
+          <EmployeesList employees={employees.rows} onDelete={onDelete} />
+          <Pagination numPages={employees.num_pages} onGetPage={onGetPage} />
+        </>
       )}
     </>
   );

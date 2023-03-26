@@ -2,13 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getEmployees, deleteEmployee} from "../../api/apiEmployee";
 const initialState = {
   employees: [],
+  currentPage: 1,
   loading: false,
-  error: null,
+  error: null
 };
 export const empladosSlice = createSlice({
   name: "employed",
   initialState: initialState,
   reducers: {
+    setPageAction: (state, action)=>{
+      state.currentPage = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -54,5 +58,5 @@ export const empladosSlice = createSlice({
       // });
   },
 });
-export const { setEmployees, setLoading, setMessage } = empladosSlice.actions;
+export const { setPageAction } = empladosSlice.actions;
 export default empladosSlice.reducer;

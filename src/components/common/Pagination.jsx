@@ -1,6 +1,6 @@
 import React from "react";
 
-const Pagination = ({numPages, onGetPage }) => {
+const Pagination = ({numPages, onGetPage , currentPage}) => {
   //Agregamos en un array los valores de la pagina
   const pageNumbers = [];
   for (let i = 1; i <= numPages; i++) {
@@ -9,15 +9,15 @@ const Pagination = ({numPages, onGetPage }) => {
   return (
     <div className="col mt-4">
       <ul className="pagination justify-content-center">
-        <li class="page-item disabled">
+        <li className="page-item disabled">
           <button className="page-link">Anterior</button>
         </li>
         {pageNumbers.map((pageValue) => {
           return (
             <>
-              <li key={pageValue} className="page-item">
+              <li key={pageValue} className={`page-item ${pageValue === currentPage ? 'active': ""}`}>
                 <button className="page-link"
-                onClick={()=> /*onGetPage(pageValue)*/ console.log(pageValue)}
+                onClick={(e)=> onGetPage(e,pageValue)}
                 >
                   {pageValue}
                 </button>

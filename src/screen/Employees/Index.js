@@ -2,22 +2,26 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getEmployees, deleteEmployee } from "../../api/apiEmployee";
+import { setPageAction } from "../../features/empleados/empleadosSlice";
 import { Employees } from "./EmployedList";
 import { Loading } from "../../components/common/Loading";
 import { advertencia } from "../../utils/alertas";
 function Index() {
   const dispatch = useDispatch();
   const empleados = useSelector((state) => state.employed.employees);
+  const currentPage = useSelector((state) => state.employed.currentPage);
   const loading = useSelector((state) => state.employed.loading);
   const handleDelete = (id) => {
-    advertencia(()=>dispatch(deleteEmployee(id)));
+    advertencia(() => dispatch(deleteEmployee(id)));
   };
-  const handleGetForPage = (page)=>{
-    dispatch(getEmployees(page))
-  }
+  const handleGetForPage = (e, page) => {
+    e.preventDefault();
+    dispatch(setPageAction(page));
+    dispatch(getEmployees(page));
+  };
 
   useEffect(() => {
-    dispatch(getEmployees());
+    dispatch(getEmployees(currentPage));
   }, [dispatch]);
 
   return (
@@ -27,7 +31,9 @@ function Index() {
           <Link
             to="create_employed"
             type="button"
-            className={`btn btn-success fw-bold mx-2 ${loading ? "disabled": ""}`}
+            className={`btn btn-success fw-bold mx-2 ${
+              loading ? "disabled" : ""
+            }`}
           >
             Crear nuevo empleado
           </Link>
@@ -37,7 +43,12 @@ function Index() {
         {loading ? (
           <Loading />
         ) : (
-          <Employees employees={empleados} onDelete={handleDelete} onGetPage={handleGetForPage} />
+          <Employees
+            employees={empleados}
+            onDelete={handleDelete}
+            onGetPage={handleGetForPage}
+            currentPage={currentPage}
+          />
         )}
       </div>
     </div>

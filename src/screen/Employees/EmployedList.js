@@ -74,7 +74,7 @@ function EmployeesList({ employees, onDelete }) {
   );
 }
 //recibe la lista de empleados y es el que tiene la logica de como se renderiza
-export function Employees({ employees, onDelete, onGetPage }) {
+export function Employees({ employees, onDelete, onGetPage, currentPage }) {
   return (
     <>
       {employees.length === 0 ? (
@@ -85,7 +85,7 @@ export function Employees({ employees, onDelete, onGetPage }) {
       ) : (
         <>
           <EmployeesList employees={employees.rows} onDelete={onDelete} />
-          <Pagination numPages={employees.num_pages} onGetPage={onGetPage} />
+          <Pagination numPages={employees.num_pages} onGetPage={onGetPage} currentPage={currentPage} />
         </>
       )}
     </>

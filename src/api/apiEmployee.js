@@ -4,8 +4,8 @@ const url = "http://localhost:5000/api/employee";
 
 export const getEmployees = createAsyncThunk(
   "employee/getEmpleado",
-  async () => {
-    const response = await fetch(`${url}?page=1`);
+  async (page) => {
+    const response = await fetch(`${url}?page=${page}`);
     const responseData = await response.json();
     return responseData.data;
   }

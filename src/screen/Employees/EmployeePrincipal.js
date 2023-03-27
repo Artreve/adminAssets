@@ -6,7 +6,7 @@ import { setPageAction } from "../../features/empleados/empleadosSlice";
 import { Employees } from "./EmployedList";
 import { Loading } from "../../components/common/Loading";
 import { advertencia } from "../../utils/alertas";
-function Index() {
+function EmployeePrincipal() {
   const dispatch = useDispatch();
   const empleados = useSelector((state) => state.employed.employees);
   const currentPage = useSelector((state) => state.employed.currentPage);
@@ -54,4 +54,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default EmployeePrincipal;

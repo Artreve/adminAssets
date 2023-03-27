@@ -33,7 +33,7 @@ function AssetList({ assets, onDelete }) {
                 <td>{asset.employeeid}</td>
                 <td>
                   <Link
-                    to={`detail_employed/${asset.idasset}`}
+                    to={`/detail_asset/${asset.idasset}`}
                     type="button"
                     className="btn btn-info"
                   >
@@ -78,10 +78,10 @@ function AssetList({ assets, onDelete }) {
   );
 }
 //recibe la lista de assets y es el que tiene la logica de como se renderiza
-export function Assets({ assets, onDelete, onGetPage, currentPage }) {
+export function Assets({ asset, onDelete, onGetPage, currentPage }) {
   return (
     <>
-      {assets.length === 0 ? (
+      {asset.length === 0 ? (
         <ErrorMessage
           tittle={"Mensage"}
           message={"No se encuentran activos diponibles"}
@@ -89,10 +89,10 @@ export function Assets({ assets, onDelete, onGetPage, currentPage }) {
       ) : (
         <>
           <FilterAssets />
-          <AssetList assets={assets.rows} onDelete={onDelete} />
-          <h6>{`Total de paginas: ${assets.num_pages}`}</h6>
+          <AssetList assets={asset.rows} onDelete={onDelete} />
+          <h6>{`Total de paginas: ${asset.num_pages}`}</h6>
           <Pagination
-            numPages={assets.num_pages}
+            numPages={asset.num_pages}
             onGetPage={onGetPage}
             currentPage={currentPage}
           />

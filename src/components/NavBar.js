@@ -11,7 +11,7 @@ function NavBar() {
                 </Link>
                 <form className="d-flex" role="search">
                 <Link to= '/' className="btn btn-outline-light mx-2" type="submit">Inicio</Link>
-                <Link to= '/' className="btn btn-outline-light" type="submit">Assets</Link>
+                <Link to= '/asset' className="btn btn-outline-light" type="submit">Assets</Link>
                 </form>
             </div>
         </nav>

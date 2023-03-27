@@ -21,7 +21,7 @@ function AssetDetail() {
   const handleConfirmEdition = () => {
     advertencia(()=>{
       dispatch(updateAssets(asset))
-      navigate("/")
+      navigate("/asset")
     })
   };
 

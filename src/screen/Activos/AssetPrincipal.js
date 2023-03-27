@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAssetss, deleteAsset } from "../../api/apiAssets";
+import {getAssetss,deleteAsset} from "../../api/apiAssets";
 import { setPageAction } from "../../features/activos/assetSlice";
 import { Assets } from "./AssetList";
 import { Loading } from "../../components/common/Loading";
@@ -28,7 +28,7 @@ function AssetPrincipal() {
       <div className="row">
         <div className="col-6 col-md-4 mt-3">
           <Link
-            to="asset/create_employed"
+            to="create_asset"
             type="button"
             className={`btn btn-success fw-bold mx-2 ${
               loading ? "disabled" : ""

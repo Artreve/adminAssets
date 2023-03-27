@@ -4,7 +4,6 @@ import { useDispatch} from "react-redux";
 import ErrorMessage from "../../components/common/ErrorMenssage";
 import InputForm from "../../components/employee/InputForm";
 import { Link } from "react-router-dom";
-// import { updateEmployed } from "../features/empleados/empleadosSlice";
 import { advertencia } from "../../utils/alertas";
 import { getEmployeeById, updateEmployed } from "../../api/apiEmployee";
 function EmployedDetail() {

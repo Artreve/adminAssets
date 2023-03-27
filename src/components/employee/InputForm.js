@@ -70,7 +70,7 @@ function InputForm({ employee, handleChange }) {
         className="form-control"
         id="exampleFormControlInput1"
         placeholder="Nombre"
-        value={formatoFecha(join_date) }
+        value={join_date?formatoFecha(join_date):""}
         required
       />
       <label className="my-3">Rol</label>

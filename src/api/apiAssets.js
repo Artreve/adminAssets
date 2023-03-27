@@ -1,12 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const url = "http://localhost:5000/api/assets";
+const url = "http://localhost:5000/api/asset";
 
-export const getAssetss = createAsyncThunk("assets/getAssets", async (page) => {
+export const getAssetss = createAsyncThunk("assets/getAssets", 
+async (page) => {
   try {
     const response = await fetch(`${url}?page=${page}`);
     const responseData = await response.json();
     return responseData.data;
+
   } catch (error) {
     console.log(error);
   }
@@ -22,12 +24,12 @@ export const updateAssets = createAsyncThunk(
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: asset.first_name,
-          type: asset.last_name,
-          code: asset.cuit,
-          marca: asset.team_id,
-          purchase_date: asset.join_date,
-          description: asset.rol,
+          name: asset.name,
+          type: asset.type,
+          code: asset.code,
+          marca: asset.marca,
+          purchase_date: asset.purchase_date,
+          description: asset.description,
           employeeid: asset.employeeid
         }),
       });
@@ -86,7 +88,7 @@ export const getAssetById = async (id) => {
   try {
     const response = await fetch(`${url}/${id}`);
     const responseData = await response.json();
-    return responseData.menssage;
+    return responseData.data;
   } catch (error) {
     console.log(error);
   }

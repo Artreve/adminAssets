@@ -30,7 +30,7 @@ function InputForm({ asset, handleChange }) {
       <label className="my-3">Tipo</label>
       <input
         onChange={handleChange}
-        name="tipo"
+        name="type"
         type="text"
         className="form-control"
         id="exampleFormControlInput1"
@@ -67,7 +67,7 @@ function InputForm({ asset, handleChange }) {
         type="date"
         className="form-control"
         id="exampleFormControlInput1"
-        value={formatoFecha(purchase_date)}
+        value={purchase_date?formatoFecha(purchase_date):""}
         required
       />
       <label className="my-3">Descripcion</label>
@@ -78,7 +78,6 @@ function InputForm({ asset, handleChange }) {
         className="form-control"
         id="exampleFormControlInput1"
         value={description}
-        required
       />
       <label className="my-3">Empleado asignado</label>
       <input

@@ -23,7 +23,7 @@ export const assetsSlice = createSlice({
       })
       .addCase(getAssetss.fulfilled, (state, action) => {
         state.loading = false;
-        state.employees = action.payload;
+        state.assets = action.payload;
       })
       .addCase(getAssetss.rejected, (state, action) => {
         state.loading = false;
@@ -35,27 +35,12 @@ export const assetsSlice = createSlice({
       })
       .addCase(deleteAsset.fulfilled, (state, action) => {
         state.loading = false;
-        state.employees.rows = state.employees.rows.filter((employee) => employee.idemployee !== action.payload);
+        state.assets.rows = state.assets.rows.filter((asset) => asset.idasset !== action.payload);
       })
       .addCase(deleteAsset.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
-      //----------CREATE--------------
-      // .addCase(createEmployee.pending, (state) => {
-      //   state.loading = true;
-      // })
-      // .addCase(createEmployee.fulfilled, (state, action) => {
-      //   state.loading = false;
-      //   console.log('estoy dentro del slice')
-      //   console.log(action.payload)
-      //   state.employees.rows = [...state.employees.rows, action.payload];
-      //   console.log(state.employees.rows)
-      // })
-      // .addCase(createEmployee.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = action.error.message;
-      // });
   },
 });
 export const { setPageAction } = assetsSlice.actions;

@@ -26,6 +26,7 @@ const FilterEmployee = () => {
             id="exampleFormControlInput1"
             placeholder="nombre"
             // value={empleados.first_name}
+            disabled
           />
         </div>
         <div className="col-3">
@@ -38,6 +39,7 @@ const FilterEmployee = () => {
             id="exampleFormControlInput1"
             placeholder="apellido"
             // value={empleados.last_name}
+            disabled
           />
         </div>
         <div className="col-3">
@@ -49,10 +51,11 @@ const FilterEmployee = () => {
             className="form-control"
             id="exampleFormControlInput1"
             // value={empleados.team_id}
+            disabled
           />
         </div>
         <div className="col-3 d-flex align-items-center">
-          <button type="submit" className="btn btn-success my-3 mx-3">
+          <button type="submit" className="btn btn-success my-3 mx-3" disabled>
             Buscar
           </button>
         </div>

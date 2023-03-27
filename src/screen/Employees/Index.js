@@ -17,12 +17,11 @@ function Index() {
   const handleGetForPage = (e, page) => {
     e.preventDefault();
     dispatch(setPageAction(page));
-    dispatch(getEmployees(page));
   };
 
   useEffect(() => {
     dispatch(getEmployees(currentPage));
-  }, [dispatch]);
+  }, [dispatch, currentPage]);
 
   return (
     <div className="container">

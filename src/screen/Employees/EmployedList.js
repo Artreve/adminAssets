@@ -2,6 +2,8 @@ import React from "react";
 import ErrorMessage from "../../components/common/ErrorMenssage";
 import { Link } from "react-router-dom";
 import Pagination from "../../components/common/Pagination";
+import FilterEmployee from "../../components/employee/FilterEmployee";
+import { formatoFecha } from "../../utils/dateFormate";
 function EmployeesList({ employees, onDelete }) {
   return (
     <>
@@ -18,14 +20,14 @@ function EmployeesList({ employees, onDelete }) {
           </tr>
         </thead>
         <tbody>
-          {employees.map(employee => {
+          {employees.map((employee) => {
             return (
               <tr key={employee.idemployee}>
                 <td>{employee.first_name}</td>
                 <td>{employee.last_name}</td>
                 <td>{employee.cuit}</td>
                 <td>{employee.team_id}</td>
-                <td>{employee.join_date}</td>
+                <td>{formatoFecha(employee.join_date)}</td>
                 <td>{employee.rol}</td>
                 <td>
                   <Link
@@ -84,8 +86,14 @@ export function Employees({ employees, onDelete, onGetPage, currentPage }) {
         />
       ) : (
         <>
+          <FilterEmployee />
           <EmployeesList employees={employees.rows} onDelete={onDelete} />
-          <Pagination numPages={employees.num_pages} onGetPage={onGetPage} currentPage={currentPage} />
+          <h6>{`Total de paginas: ${employees.num_pages}`}</h6>
+          <Pagination
+            numPages={employees.num_pages}
+            onGetPage={onGetPage}
+            currentPage={currentPage}
+          />
         </>
       )}
     </>

@@ -1,39 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import ErrorMessage from "../../components/common/ErrorMenssage";
-import InputForm from "../../components/common/InputForm";
-import EmployedCard from "../../components/employeeDetail/EmployeeCard";
+import InputForm from "../../components/employee/InputForm";
 import { Link } from "react-router-dom";
 // import { updateEmployed } from "../features/empleados/empleadosSlice";
 import { advertencia } from "../../utils/alertas";
+import { getEmployeeById, updateEmployed } from "../../api/apiEmployee";
 function EmployedDetail() {
   //Funciones
   const empleadoSearch = () => {
-    // setEmpleado(empleados.find((empleado) => empleado.employee_id === id));
+     async function getData (){
+      const empleado = await getEmployeeById(id)
+      setEmpleado(empleado)
+    }
+    getData()
   };
   const handleChange = (e) => {
-    // setEmpleado({ ...empleado, [e.target.name]: e.target.value });
-  };
-  const handleCancelEdition = () => {
-    empleadoSearch();
-    setEdicion(false);
+    setEmpleado({ ...empleado, [e.target.name]: e.target.value });
   };
   const handleConfirmEdition = () => {
     advertencia(()=>{
-      // dispatch(updateEmployed(empleado))
+      dispatch(updateEmployed(empleado))
       navigate("/")
     })
   };
 
   //Hooks
   const { id } = useParams();
-  const empleados = useSelector((state) => state.employed.empleados);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [empleado, setEmpleado] = useState(null);
-  const [edicion, setEdicion] = useState(false);
-  useEffect(empleadoSearch, []);
+  useEffect(empleadoSearch, [id]);
 
   return (
     <div className="container">
@@ -41,7 +39,7 @@ function EmployedDetail() {
         <div className="col">
           <div className="card my-3">
             <div className="card-body">
-              {!empleado?.employee_id && (
+              {!empleado?.idemployee && (
                 <>
                   <ErrorMessage
                     tittle={"Empleado no encontrado"}
@@ -52,32 +50,16 @@ function EmployedDetail() {
                   </Link>
                 </>
               )}
-              {(empleado?.employee_id && !edicion) &&(
-                <>
-                <EmployedCard employee={empleado}/>
-                <Link to={`/`} type="button" className="btn btn-info">
-                    Volver
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => setEdicion(true)}
-                    className="btn btn-success mx-3"
-                  >
-                    Editar
-                  </button>
-                </>
-              )}
-              {(empleado?.employee_id && edicion) &&(
+              {(empleado?.idemployee) &&(
                 <>
                 <InputForm employee={empleado} handleChange={handleChange}/>
                 <div className="my-3">
-                    <button
-                      type="button"
-                      onClick={handleCancelEdition}
-                      className="btn btn-danger"
+                    <Link
+                      to="/"
+                      className="btn btn-secondary"
                     >
                       Cancelar
-                    </button>
+                    </Link>
                     <button
                       type="button"
                       onClick={handleConfirmEdition}

@@ -1,4 +1,5 @@
 import React from "react";
+import { formatoFecha } from "../../utils/dateFormate";
 
 function InputForm({ employee, handleChange }) {
   //Desestructuramos el employee
@@ -47,8 +48,8 @@ function InputForm({ employee, handleChange }) {
         id="exampleFormControlInput1"
         value={cuit}
         required
-        minLength = {4}
-        maxLength={15}
+        minLength = {11}
+        maxLength={11}
       />
       <label className="my-3">ID de equipo</label>
       <input
@@ -69,7 +70,7 @@ function InputForm({ employee, handleChange }) {
         className="form-control"
         id="exampleFormControlInput1"
         placeholder="Nombre"
-        value={join_date}
+        value={formatoFecha(join_date) }
         required
       />
       <label className="my-3">Rol</label>

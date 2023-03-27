@@ -11,6 +11,21 @@ export const getEmployees = createAsyncThunk(
   }
 );
 
+export const updateEmployed = createAsyncThunk (
+  "employee/updateEmpleado",
+  async(id, employee) =>{
+    const response = await fetch(`${url}/${id}`,{
+      method: "PUT",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(employee)
+    });
+    const responseData = await response.json();
+    return responseData;
+  }
+)
+
 export const deleteEmployee = createAsyncThunk(
   "employee/deleteEmployee",
   async (id) => {
@@ -27,7 +42,7 @@ export const deleteEmployee = createAsyncThunk(
 export const createEmployee = createAsyncThunk(
   "employee/createEmployee",
   async (employee) => {
-    const { first_name, last_name, cuit, team_id, join_date, rol } = employee
+    const { first_name, last_name, cuit, team_id, join_date, rol } = employee;
     const response = await fetch(`${url}`, {
       method: "POST",
       headers: {
@@ -43,6 +58,12 @@ export const createEmployee = createAsyncThunk(
       }),
     });
     const responseData = await response.json();
-    return responseData
+    return responseData;
   }
 );
+
+export const getEmployeeById = async (id) => {
+  const response = await fetch(`${url}/${id}`);
+  const responseData = await response.json();
+  return responseData.menssage;
+};
